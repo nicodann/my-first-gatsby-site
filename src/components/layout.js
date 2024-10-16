@@ -20,14 +20,34 @@ const Layout = ({ pageTitle, children }) => {
     }
   `)
 
+  const navItems = [
+    {
+      name: "Home",
+      url: "/"
+    },
+    {
+      name: "About",
+      url: '/about'
+    },
+    {
+      name: "Blog",
+      url: "/blog"
+    }
+  ]
+
   return (
     <div className={container}>
       <header className={siteTitle}>{data.site.siteMetadata.title}</header>
       <nav>
         <ul className={navLinks}>
-          <li className={navLinkItem}><Link className={navLinkText} to="/">Home</Link></li>
-          <li className={navLinkItem}><Link className={navLinkText} to="/about">About</Link></li>
-        </ul>
+          {navItems.map((item, i) => (
+            <li className={navLinkItem} key={i}>
+              <Link className={navLinkText} to={item.url}>
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul> 
       </nav>
       <main>
         <h1 className={heading}>{pageTitle}</h1>
